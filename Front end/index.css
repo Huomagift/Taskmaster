@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: 8%;
+    background-color: #b0a5a5;
+}
+
+.container {
+    margin: 0 auto;
+    width: 450px;
+    padding: 20px;
+    display: grid;
+    justify-content: center;
+    border: 1px solid #FFEFE5;
+    border-radius: 30px;
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
+    background-color: #FFEFE5;
+}
+
+.container form h3 {
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container form p {
+    margin-bottom: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.1rem;
+}
+
+.container form p a {
+    color: blue;
+    text-decoration: none;
+}
+
+.container form p a:hover {
+    text-decoration: underline;
+}
+
+.container label {
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 5px;
+    padding: 5px;
+}
+
+.container input, .container select {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #333;
+    background-color: #FFEFE5;
+    border-radius: 0;
+    padding: 8px 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+}
+
+.container input:focus, .container select:focus {
+    outline: none;
+    border-bottom: 2px solid #555;
+}
+
+.container input:focus + label, .container select:focus + label {
+    color: #555;
+}
+
+.container button {
+    width: 100%;
+    margin: 20px 20px 20px 0;
+    border-radius: 30px;
+    height: 5vh;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.container button:hover {
+    background-color: black;
+    color: white;
+}
+
+.container button:active {
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

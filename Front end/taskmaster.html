@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/Front end/taskmaster.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <section class="navigation collapsed">
+            <div class="nav-info">
+                <div class="user-info">
+                    <div class="users">
+                        <img src="demo.jpeg" alt="user-img">
+                        <h3>Username</h3>
+                    </div>
+                    <div class="icons">
+                        <i class="fa-regular fa-bell"></i>
+                        <i class="fa-solid fa-bars" onclick="toggleNavbar()"></i>
+                    </div>
+                </div>
+                <nav class="navbar" id="navbar">
+                    <div class="nav-opts">
+                        <i class="fa-solid fa-plus"></i>
+                        <a href="#">Add Task</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <a href="#">Search</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-solid fa-inbox"></i>
+                        <a href="#">Inbox</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-regular fa-calendar"></i>
+                        <a href="#">Today</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <a href="#">Upcoming</a>
+                    </div>
+                    <div class="nav-opts active">
+                        <i class="fa-brands fa-microsoft"></i>
+                        <a href="#">Filters & Labels</a>
+                    </div>
+                    <div class="nav-opts">
+                        <div class="dropdown-header" onclick="toggleDropdown('projectsDropdown')">
+                            <i class="fa-solid fa-angle-down"></i>
+                            <label>My Projects</label>
+                        </div>
+                        <div class="dropdown-content" id="projectsDropdown">
+                            <div class="dropdown-item">
+                                <i class="fa-solid fa-hashtag"></i>
+                                <a href="#">Home</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ext">
+                        <div class="more-opts">
+                            <i class="fa-solid fa-plus"></i>
+                            <a href="#">Add a Team</a>
+                        </div>
+                        <div class="more-opts">
+                            <i class="fa-solid fa-tags"></i>
+                            <a href="#">Browse Templates</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </section>
+        <section class="content">
+            <h2>Filters & Labels</h2>
+            <div class="filters">
+                <div class="dropdown-header" onclick="toggleDropdown('filtersOptions')">
+                    <i class="fa-solid fa-angle-down"></i>
+                    <h3>Filters</h3>
+                </div>
+                <div class="dropdown-content" id="filtersOptions">
+                    <div class="dropdown-header" onclick="toggleOptions('assignedOptions')">
+                        <i class="fa-solid fa-droplet"></i>
+                        <h4>Assigned to me</h4>
+                    </div>
+                    <div class="option-content" id="assignedOptions">
+                        <label for="start">Task start date</label><br>
+                        <input type="date" placeholder="Start Date"> <br><br>
+
+                        <label for="end">Task end date</label><br>
+                        <input type="date" placeholder="Deadline">
+                    </div>
+
+                    <div class="dropdown-header" onclick="toggleOptions('priorityOptions')">
+                        <i class="fa-solid fa-droplet"></i>
+                        <h4>Priority</h4>
+                    </div>
+                    <div class="option-content" id="priorityOptions">
+                        <select id="priorityLevel">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="labels">
+                <div class="dropdown-header" onclick="toggleDropdown('labelsOptions')">
+                    <i class="fa-solid fa-angle-down"></i>
+                    <h3>Labels</h3>
+                </div>
+                <div class="dropdown-content" id="labelsOptions">
+                    <div class="dropdown-header" onclick="toggleOptions('readOptions')">
+                        <i class="fa-solid fa-tag"></i>
+                        <h4>Read</h4>
+                    </div>
+                    <div class="option-content" id="readOptions">
+                        <input type="text" placeholder="Task Title"><br><br>
+                        <textarea placeholder="Task Description"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-management">
+                <button onclick="addTask()">Add Task</button>
+                <ul id="task-list"></ul>
+            </div>
+        </section>
+    </div>
+
+    <script src="taskmaster.js"></script>
+</body>
+</html>
