@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="inbox.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <section class="navigation collapsed">
+            <div class="nav-info">
+                <div class="user-info">
+                    <div class="users">
+                        <img src="https://t4.ftcdn.net/jpg/02/29/75/83/240_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg" alt="user-img">
+                        <h3><span id="username-display"></span></h3>
+                    </div>
+                    <div class="icons">
+                        <i class="fa-regular fa-bell" onclick="showNotificationPopup()"></i>
+                        <i class="fa-solid fa-bars" onclick="toggleNavbar()"></i>
+                    </div>
+                </div>
+                <nav class="navbar" id="navbar">
+                    <div class="nav-opts">
+                        <i class="fa-solid fa-plus" onclick="openTaskPopup()"></i>
+                        <a href="#" onclick="openTaskPopup()">Add Task</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-solid fa-magnifying-glass" onclick="openSearchPopup()"></i>
+                        <a href="#" onclick="openSearchPopup()">Search</a>
+                    </div>
+                    <div class="nav-opts active">
+                        <i class="fa-solid fa-inbox"></i>
+                        <a href="/Front end/inbox.html">Inbox</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-regular fa-calendar" onclick="showTodayTasks()"></i>
+                        <a href="#" onclick="showTodayTasks()">Today</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-regular fa-calendar-days" onclick="showUpcomingTasks()"></i>
+                        <a href="#" onclick="showUpcomingTasks()">Upcoming</a>
+                    </div>
+                    <div class="nav-opts">
+                        <i class="fa-brands fa-microsoft"></i>
+                        <a href="/Front end/taskmaster.html">Filters & Labels</a>
+                    </div>
+                    <!-- <div class="nav-opts">
+                        <div class="dropdown-header" onclick="toggleDropdown('projectsDropdown')">
+                            <i class="fa-solid fa-angle-down"></i>
+                            <label>My Projects</label>
+                        </div>
+                        <div class="dropdown-content" id="projectsDropdown">
+                            <div class="dropdown-item">
+                                <i class="fa-solid fa-hashtag"></i>
+                                <a href="#">Home</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ext">
+                        <div class="more-opts">
+                            <i class="fa-solid fa-plus"></i>
+                            <a href="#">Add a Team</a>
+                        </div>
+                        <div class="more-opts">
+                            <i class="fa-solid fa-tags"></i>
+                            <a href="#">Browse Templates</a>
+                        </div>
+                    </div> -->
+                </nav>
+            </div>
+        </section>
+        
+        <section class="content">
+            <h3>All Tasks</h3>
+            <div class="task-management">
+                <ul id="task-list"></ul>
+            </div>
+        </section>    
+    </div>
+
+    <div class="fucntionalities">
+        <section class="addTask">
+            <div id="taskPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closeTaskPopup()">&times;</span>
+                    <h3>Add New Task</h3>
+                    <label>Title:</label><br>
+                    <input type="text" id="taskTitle" placeholder="Task Title"><br><br>
+                    <label>Description:</label><br>
+                    <textarea id="taskDescription" placeholder="Task Description"></textarea><br><br>
+                    <label>Assigned Date:</label><br>
+                    <input type="date" id="AssignedDate"><br><br>
+                    <label>Due Date:</label><br>
+                    <input type="date" id="DueDate"><br><br>
+                    <label>Priority:</label><br>
+                    <select id="taskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select><br><br>
+                    <button onclick="addTaskFromPopup()">Add Task</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="search">
+            <div class="search">
+                <div id="searchPopup" class="searchpopup">
+                    <div class="searchpopup-content">
+                        <span class="searchclose" onclick="closeSearchPopup()">&times;</span>
+                        <h3>Search Tasks</h3>
+                        <input type="text" id="searchInput" placeholder="Enter task title" oninput="searchTasks()">
+                        <ul id="searchResults"></ul>
+                    </div>
+                </div>
+            </div>
+            <div id="taskDetailPopup" class="detailpopup">
+                <div class="detailpopup-content">
+                    <span class="detailclose" onclick="closeTaskDetailPopup()">&times;</span>
+                    <h3 id="detailTitle"></h3>
+                    <p><strong>Description:</strong> <span id="detailDescription"></span></p>
+                    <p><strong>Due Date:</strong> <span id="detailDueDate"></span></p>
+                    <p><strong>Priority:</strong> <span id="detailPriority"></span></p>
+                </div>
+            </div>                
+        </section>
+
+        <section class="today">
+            <div id="todayTasksPopup" class="Todaypopup" style="display: none;">
+                <h3>Tasks Due Today</h3>
+                <ul id="todayTasksList"></ul>
+                <button onclick="closeTodayTasksPopup()">Close</button>
+            </div>
+        </section>
+
+        <section class="upcoming">
+            <div id="upcomingTasksPopup" class="upcoming-popup" style="display: none;">
+                <h3>Upcoming Tasks</h3>
+                <ul id="upcomingTasksList"></ul>
+                <button onclick="closeUpcomingTasksPopup()">Close</button>
+            </div>
+        </section>
+
+        <section class="notification">
+            <div id="notificationPopup" class="popup" style="display: none;">
+                <h3>Task Notifications</h3>
+                <ul id="notificationList"></ul>
+                <button onclick="closeNotificationPopup()">Close</button>
+            </div>        
+        </section>
+    </div>
+    
+
+    
+    
+    
+    
+    
+    <script src="taskmaster.js"></script>
+</body>
+</html>

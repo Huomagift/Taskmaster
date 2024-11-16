@@ -13,7 +13,7 @@
             <p>Already have an account? <a href="/Front end/index-login.html">Log-in</a> </p>
 
             <label for="First name">First Name </label><br>
-            <input type="text" name="first_name" id="firstName" placeholder="First Name" required><br>
+            <input type="text" name="first_name" id="Username" placeholder="First Name" required><br>
 
             <label for="Last name">Last Name </label><br>
             <input type="text" name="last_name" id="lastName" placeholder="Last Name" required><br>
@@ -45,10 +45,27 @@
     
         form.addEventListener("submit", function (event) {
             if (password.value !== confirmPassword.value) {
-                event.preventDefault(); // Prevent form submission
+                event.preventDefault();
                 alert("Passwords do not match!");
             }
         });
+
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('Username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const gender = document.getElementById('gender').value;
+
+            localStorage.setItem('Username', username);
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            localStorage.setItem('gender' , gender);
+
+            alert('Sign up successful!');
+        });
+
     </script>
     
 </body>
