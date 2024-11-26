@@ -8,9 +8,9 @@ const taskSchema = new Schema ({
     priority: {
         type: String,
         enum: ["low", "medium", "high"],
-        require: true,
+        required: true,
     },
     user: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}
 }, {timestamp: true});
 
-module.exports = mongoose.Model("Task", taskSchema);
+module.exports = mongoose.model("Task", taskSchema);
